@@ -1311,14 +1311,13 @@ import { getDatabase, ref, set, get, push, remove, update, onValue } from "https
 
 // ── Firebase Config ──
 const firebaseConfig = {
-  apiKey: "AIzaSyBMKrFDt5uvRDjTDDeaRKQQHXNrwc0SAEo",
-  authDomain: "let-s-talk-e57c6.firebaseapp.com",
-  databaseURL: "https://let-s-talk-e57c6-default-rtdb.firebaseio.com",
-  projectId: "let-s-talk-e57c6",
-  storageBucket: "let-s-talk-e57c6.firebasestorage.app",
-  messagingSenderId: "958080107908",
-  appId: "1:958080107908:web:d9b11b958af59bb315c9d1",
-  measurementId: "G-QG6K3BNH6G"
+  apiKey: "AIzaSyAdhaHo8ADFkrIev-GdYaTzFOONtaQc1aE",
+  authDomain: "damn-19efe.firebaseapp.com",
+  databaseURL: "https://damn-19efe-default-rtdb.firebaseio.com",
+  projectId: "damn-19efe",
+  storageBucket: "damn-19efe.firebasestorage.app",
+  messagingSenderId: "893393175840",
+  appId: "1:893393175840:web:f991f92da7adf407d1c345"
 };
 
 const app  = initializeApp(firebaseConfig);
@@ -1441,19 +1440,34 @@ window.closeModal = () => document.getElementById('create-modal').classList.remo
 window.createKey = async () => {
   const name = document.getElementById('new-key-name').value.trim();
   if (!name) { showToast('Enter a key name first.', 'error'); return; }
-  const keyVal = generateKey();
-  const uid = currentUser.uid;
-  const newRef = push(ref(db, `wesea_keys/${uid}`));
-  await set(newRef, {
-    name,
-    key: keyVal,
-    active: true,
-    createdAt: Date.now(),
-    searches: 0
-  });
-  closeModal();
-  showToast('API key created!', 'success');
-  loadKeys();
+  try {
+    const keyVal = generateKey();
+    const uid    = currentUser.uid;
+    const newRef = push(ref(db, `wesea_keys/${uid}`));
+    await set(newRef, {
+      name,
+      key:       keyVal,
+      active:    true,
+      createdAt: Date.now(),
+      searches:  0
+    });
+    const safeKey = keyVal.replace(/\./g,'_dot_').replace(/[^a-zA-Z0-9_-]/g,'_');
+    await set(ref(db, `wesea_key_index/${safeKey}`), {
+      uid, name,
+      active:        true,
+      searches:      0,
+      monthSearches: 0,
+      currentMonth:  new Date().toISOString().slice(0,7),
+      createdAt:     Date.now()
+    });
+    closeModal();
+    showToast('API key created!', 'success');
+    loadKeys();
+  } catch(e) {
+    closeModal();
+    showToast('Failed: ' + e.message, 'error');
+    console.error('createKey error:', e);
+  }
 };
 
 function loadKeys() {
