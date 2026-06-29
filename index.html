@@ -754,6 +754,15 @@
   .askcard .ak-send:disabled{background:var(--chip); box-shadow:none;}
   .askcard .ak-send svg{width:20px;height:20px;color:#fff;}
   .askcard .ak-send:disabled svg{color:var(--dim);}
+  /* feature-preference pill shown inside the question card */
+  .askcard .ak-pill{display:none; align-items:center; gap:10px; flex-wrap:wrap; background:var(--chip); border:1px solid var(--line); border-radius:999px; padding:8px 8px 8px 16px; margin-bottom:14px;}
+  .askcard .ak-pill.show{display:flex;}
+  .askcard .ak-pill-tx{font-size:12.5px; color:var(--soft); flex:1; min-width:150px; line-height:1.32;}
+  .askcard .ak-pill-btns{display:flex; gap:7px; flex:none;}
+  .askcard .ak-pill-btn{border:none; border-radius:999px; padding:7px 16px; font-size:12.5px; font-weight:600; cursor:pointer; transition:transform .12s ease;}
+  .askcard .ak-pill-btn:active{transform:scale(.95);}
+  .askcard .ak-pill-btn.yes{background:var(--accent); color:#fff;}
+  .askcard .ak-pill-btn.no{background:transparent; color:var(--soft); border:1px solid var(--line);}
 
   /* upgrade / payment screen */
   .benefits-screen{position:fixed; inset:0; z-index:82; display:none; flex-direction:column; overflow-y:auto; background:linear-gradient(180deg,#040a18,#01040c); max-width:480px; margin:0 auto;}
@@ -1008,6 +1017,56 @@
     <div class="tp-row" id="pdModes">
       <span class="tp-row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></span>
       <span class="tp-row-tx"><b>Modes</b><i>Choose the AI model</i></span>
+      <span class="tp-row-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+    </div>
+
+    <div class="tp-title" style="padding-top:6px;">Arenas</div>
+
+    <div class="tp-row" data-arena="students">
+      <span class="tp-row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.5 2.5 6 2.5s6-1.5 6-2.5v-5"/><path d="M22 10v6"/></svg></span>
+      <span class="tp-row-tx"><b>Students Arena</b><i>Learn any subject, exam prep</i></span>
+      <span class="tp-row-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+    </div>
+
+    <div class="tp-row" data-arena="medical">
+      <span class="tp-row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M12 10v6M9 13h6"/></svg></span>
+      <span class="tp-row-tx"><b>Medical Center Discussion</b><i>Health discussion (not advice)</i></span>
+      <span class="tp-row-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+    </div>
+
+    <div class="tp-row" data-arena="bigtalks">
+      <span class="tp-row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+      <span class="tp-row-tx"><b>Big Talks to Grow Upon</b><i>Honest feedback on your ideas</i></span>
+      <span class="tp-row-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+    </div>
+
+    <div class="tp-row" data-arena="teachers">
+      <span class="tp-row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="13" rx="1.5"/><path d="M7 16v4M17 16v4M7 8h6M7 11h9"/></svg></span>
+      <span class="tp-row-tx"><b>Teachers Arena</b><i>Better ways to teach</i></span>
+      <span class="tp-row-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+    </div>
+
+    <div class="tp-row" data-arena="professional">
+      <span class="tp-row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M2 13h20"/></svg></span>
+      <span class="tp-row-tx"><b>Professional Arena</b><i>Professional work only</i></span>
+      <span class="tp-row-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+    </div>
+
+    <div class="tp-row" data-arena="research">
+      <span class="tp-row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>
+      <span class="tp-row-tx"><b>Deep Research Arena</b><i>Many sources, deep answers</i></span>
+      <span class="tp-row-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+    </div>
+
+    <div class="tp-row" data-arena="files">
+      <span class="tp-row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg></span>
+      <span class="tp-row-tx"><b>File Handling Arena</b><i>Fix &amp; improve your files</i></span>
+      <span class="tp-row-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+    </div>
+
+    <div class="tp-row" data-arena="developers">
+      <span class="tp-row-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+      <span class="tp-row-tx"><b>Developers Arena</b><i>Build apps from scratch</i></span>
       <span class="tp-row-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
     </div>
 
@@ -1681,6 +1740,13 @@
       <span class="ak-step" id="akStep">1 of 1</span>
       <div class="ak-x" id="akClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
     </div>
+    <div class="ak-pill" id="akPill">
+      <span class="ak-pill-tx">Do you like this type of questions feature?</span>
+      <div class="ak-pill-btns">
+        <button class="ak-pill-btn yes" id="akPillYes">Yes</button>
+        <button class="ak-pill-btn no" id="akPillNo">No</button>
+      </div>
+    </div>
     <div class="ak-q" id="akQuestion"></div>
     <div class="ak-opts" id="akOpts"></div>
     <div class="ak-bottom">
@@ -2075,6 +2141,7 @@ function enterApp(){
   updateAcctIndicator();
   loadChats(); loadBanner(); newChat(); applyPlan();
   loadSettings(); applySettings();
+  loadAskPref();
   initOnboarding();
   fetchAccountEmail();
 }
@@ -3536,6 +3603,23 @@ var suppressAskInjection = false; // set true when we send the card's answers ba
 // We strip this block from the visible reply and drive an interactive card.
 var askState = null; // { questions:[{q,options}], answers:[], idx }
 
+// User preference for the interactive question card. When turned off, the AI
+// asks its questions as plain text in the chat instead of rendering the card.
+var askCardEnabled = true;   // whether the interactive card is used
+var askPillAnswered = false; // whether the user has answered the preference pill
+function loadAskPref(){
+  try{
+    var v = localStorage.getItem("wod_askcard_"+(uid||"x"));
+    if(v==="off"){ askCardEnabled=false; askPillAnswered=true; }
+    else if(v==="on"){ askCardEnabled=true; askPillAnswered=true; }
+    else { askCardEnabled=true; askPillAnswered=false; }
+  }catch(e){}
+}
+function setAskPref(on){
+  askCardEnabled = !!on; askPillAnswered = true;
+  try{ localStorage.setItem("wod_askcard_"+(uid||"x"), on?"on":"off"); }catch(e){}
+}
+
 function parseAskBlock(reply){
   if(typeof reply!=="string") return { clean:reply, ask:null };
   var raw = reply;
@@ -3608,6 +3692,7 @@ function autoExtractQuestions(text){
 function openAskCard(ask){
   askState = { questions: ask.questions, answers: [], idx: 0 };
   $("askCardBg").classList.add("open");
+  var _pill=$("akPill"); if(_pill){ _pill.classList.toggle("show", !askPillAnswered); }
   renderAskQuestion();
 }
 function closeAskCard(){
@@ -3695,6 +3780,24 @@ $("akSend").addEventListener("click", akAdvance);
 $("akInput").addEventListener("input", updateAkSend);
 $("akInput").addEventListener("keydown", function(e){ if(e.key==="Enter" && !$("akSend").disabled){ e.preventDefault(); akAdvance(); } });
 $("akClose").addEventListener("click", closeAskCard);
+$("akPillYes").addEventListener("click", function(){
+  setAskPref(true);
+  var _pill=$("akPill"); if(_pill){ _pill.classList.remove("show"); }
+});
+$("akPillNo").addEventListener("click", function(){
+  setAskPref(false);
+  // Keep the question(s) the AI just asked, but show them as a normal chat
+  // message instead of the card, so this one can still be answered.
+  var qs = (askState && askState.questions) ? askState.questions.slice() : [];
+  closeAskCard();
+  if(qs.length){
+    var qtext = qs.map(function(q){ return q.q; }).join("\n\n");
+    addAI(qtext);
+    history.push({ role:"assistant", content: qtext });
+    saveCurrent();
+  }
+  toast("Okay — I'll just ask in the chat from now on");
+});
 
 async function callWorker(text, hidden, files, docFiles, alreadyInHistory){
   // If an image is attached, handle vision directly (bypass Worker)
@@ -3704,7 +3807,7 @@ async function callWorker(text, hidden, files, docFiles, alreadyInHistory){
   let payload=isComparisonQuery(text)?injectTableInstruction(text):text;
   // Silently teach the model (app-side, no Worker change) that it MAY ask
   // structured questions. Skipped when we are sending the card's answers back.
-  if(!suppressAskInjection){ payload = ASK_INSTRUCTION + payload; }
+  if(askCardEnabled && !suppressAskInjection){ payload = ASK_INSTRUCTION + payload; }
   if(userName){ payload="(The user you are talking to is named "+userName+". Address them naturally by their name when it feels warm and human, not in every single message.)\n\n"+payload; }
   if(mode==="deep"){
     payload="You are in DEEP REASONING mode. Think through this ONE TINY STEP AT A TIME — real, genuine reasoning, not a summary. Work it out slowly, each small step building on the last, considering what you know, what follows, and what to check. Put ALL of that reasoning inside a single <thinking>...</thinking> block, one short step per line. AFTER the closing </thinking> tag, write your final clear answer for the user with NO reasoning in it.\n\nQuestion: "+payload;
@@ -3741,12 +3844,18 @@ async function callWorker(text, hidden, files, docFiles, alreadyInHistory){
       // ===== AI QUESTION CARD: extract any [[ASK]]...[[/ASK]] block =====
       var _askParsed = parseAskBlock(d.reply);
       var _visibleReply = _askParsed.clean;
-      var _pendingAsk = _askParsed.ask;
+      var _pendingAsk = askCardEnabled ? _askParsed.ask : null;
+      // Card turned off: if the model still emitted a hidden ASK block, surface
+      // its questions as plain text instead of the interactive card.
+      if(!askCardEnabled && _askParsed.ask){
+        var _qt = _askParsed.ask.questions.map(function(q){ return q.q; }).join("\n\n");
+        _visibleReply = (_visibleReply ? _visibleReply + "\n\n" : "") + _qt;
+      }
       var _meta = null;
       var _parsed = extractCode(_visibleReply);
       // Fallback: if the model didn't use the tag and this is a plain text reply
       // (not code), pull any trailing question(s) out of the chat into a card.
-      if(!_pendingAsk && !_parsed){
+      if(askCardEnabled && !_pendingAsk && !_parsed){
         var _auto = autoExtractQuestions(_visibleReply);
         if(_auto.ask){
           _pendingAsk = _auto.ask;
@@ -5049,6 +5158,7 @@ $("pdModes").addEventListener("click", ()=>{ closePlus(); $("modesPopBg").classL
 $("pdSearch").addEventListener("click", ()=>{ searchOn=!searchOn; $("searchChip").classList.toggle("active", searchOn); syncSearchSub(); toast(searchOn?"Web search on":"Web search off"); closePlus(); });
 $("pdPay").addEventListener("click", ()=>{ closePlus(); openBenefits(); });
 $("plusDrawerBg").addEventListener("click", e=>{ if(e.target===$("plusDrawerBg")) closePlus(); });
+document.querySelectorAll('#plusDrawer [data-arena]').forEach(it=>it.addEventListener("click", ()=>{ closePlus(); dispatchArena(it.getAttribute("data-arena")); }));
 $("sheetBg").addEventListener("click", closeOpenSheet);
 $("searchChip").addEventListener("click", ()=>{ searchOn=!searchOn; $("searchChip").classList.toggle("active", searchOn); });
 $("modesPill").addEventListener("click", ()=>$("modesPopBg").classList.add("open"));
